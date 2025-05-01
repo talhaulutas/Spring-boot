@@ -7,6 +7,8 @@ import com.example.demo.Requests.UserAddRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService{
     @Autowired
@@ -18,5 +20,13 @@ public class UserServiceImpl implements UserService{
         user.setName(request.getName());
         userRepository.save(user);
         return new UserResult().setName(user.getName());
+    }
+
+    @Override
+    public List<UserResult> getUsers() {
+        List<User> users = userRepository.findAll();
+        List<UserResult> userResults = users.stream().
+                map(user -> new UserResult(user.getId(), user.getName())).toList();
+        return userResults;
     }
 }

@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ControllerClass {
     @Autowired
@@ -17,5 +19,10 @@ public class ControllerClass {
     @PostMapping("addUser")
     public UserResult addUser(@RequestBody UserAddRequest request){
         return userService.addUser(request);
+    }
+
+    @GetMapping("getUsers")
+    public List<UserResult> getUsers(){
+        return userService.getUsers();
     }
 }
