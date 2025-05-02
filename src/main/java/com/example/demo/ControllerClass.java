@@ -2,8 +2,8 @@ package com.example.demo;
 import com.example.demo.DataTransferObject.UserResult;
 import com.example.demo.Requests.UserAddRequest;
 import com.example.demo.Services.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,7 @@ public class ControllerClass {
     UserService userService;
 
     @PostMapping("addUser")
-    public UserResult addUser(@RequestBody UserAddRequest request){
+    public UserResult addUser(@RequestBody @Valid UserAddRequest request){
         return userService.addUser(request);
     }
 
